@@ -4,7 +4,6 @@ import {Search} from "./Search";
 import Filter from "./Filter";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-console.log(API_KEY, 'API_KEY')
 
 class Main extends React.Component {
     state = {
@@ -16,7 +15,7 @@ class Main extends React.Component {
 
 
     componentDidMount() {
-        fetch(`http://www.omdbapi.com/?s=matrix&apikey=${API_KEY}`).then((res) => res.json()).then(res => {
+        fetch(`https://www.omdbapi.com/?s=matrix&apikey=${API_KEY}`).then((res) => res.json()).then(res => {
             this.setState({movies: res.Search, loading: false});
         })
     }
@@ -24,11 +23,11 @@ class Main extends React.Component {
     searchMovies = (str) => {
         this.setState({searchStr: str, loading: true});
         if (this.state.type === "all") {
-            fetch(`http://www.omdbapi.com/?s=${str}&apikey=${API_KEY}`).then((res) => res.json()).then(res => {
+            fetch(`https://www.omdbapi.com/?s=${str}&apikey=${API_KEY}`).then((res) => res.json()).then(res => {
                 this.setState({movies: res.Search, loading: false});
             })
         } else {
-            fetch(`http://www.omdbapi.com/?s=${str}&type=${this.state.type}&apikey=${API_KEY}`).then((res) => res.json()).then(res => {
+            fetch(`https://www.omdbapi.com/?s=${str}&type=${this.state.type}&apikey=${API_KEY}`).then((res) => res.json()).then(res => {
                 this.setState({movies: res.Search, loading: false});
             })
         }
